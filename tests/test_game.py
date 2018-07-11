@@ -18,11 +18,10 @@ class TestGame(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertFalse(result)
 
-    def test_isValid_should_be_true(self):
-        g = Game()
-        string = "".join(g.grid)
-        self.assertTrue(g.is_valid(string))
-
+    # def test_isValid_should_be_true(self):
+    #     g = Game()
+    #     string = "".join(g.grid)
+    #     self.assertTrue(g.is_valid(string))
 
     def test_empty_word_is_invalid(self):
         new_game = Game()
@@ -39,3 +38,14 @@ class TestGame(unittest.TestCase):
         new_game.grid = list('KWEUEAKRZ') # Force the grid to a test case:
         self.assertIs(new_game.is_valid('SANDWICH'), False)
         self.assertEqual(new_game.grid, list('KWEUEAKRZ')) # Make sure the grid remained untouched
+
+
+    def test_is_valid2(self):
+        new_game = Game()
+        new_game.grid = list('KWIENFUQW')
+        new_game.is_valid('FEUN')
+
+    def test_unknown_word_is_invalid(self):
+        new_game = Game()
+        new_game.grid = list('KWIENFUQW') # Force the grid to a test case:
+        self.assertIs(new_game.is_valid('FEUN'), False)
