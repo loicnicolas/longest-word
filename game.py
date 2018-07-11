@@ -3,6 +3,7 @@
 # pylint: disable=too-few-public-methods
 import random
 import string
+import requests
 
 class Game:
     def __init__(self):
@@ -19,4 +20,11 @@ class Game:
                 continue
             else:
                 return False
-        return True
+        return self.__check_dictionary(word)
+
+    #@staticmethod
+    def __check_dictionary(self, word):
+        req = requests.get(f"https://wagon-dictionary.herokuapp.com/{word}")
+        response = req.json()
+        return response['found']
+
